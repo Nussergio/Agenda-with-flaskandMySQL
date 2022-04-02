@@ -1,6 +1,6 @@
 
 from tkinter import INSERT
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, flash, render_template, request, url_for, redirect
 from flask_mysqldb import MySQL
 
 app = Flask(__name__)
@@ -25,6 +25,7 @@ def EDIT_CONTACT():
       cur= mysql.connection.cursor()
       cur.execute('INSERT INTO mysql.clientes (name, email) VALUES (%s, %s)',(name, email))
       mysql.connection.commit()
+      flash("Contact add succefully")
       return redirect(url_for('index'))
 
 if __name__ == '__main__':
